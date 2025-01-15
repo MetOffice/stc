@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# (C) Crown Copyright, Met Office. All rights reserved.
+#
+# This file is part of SciTools Commands and is released under the BSD 3-Clause license.
+# See LICENSE in the root of the repository for full licensing details.
 
 import os
 import sys
