@@ -16,6 +16,6 @@ stc plot IFILE [...] -cmap 'auto', 'RdYlBu_r' / 'terrain' / 'Accent' / ... See a
 stc plot IFILE [...] -mask YOUR_PATH/qrparm.mask
 ```
 
-Handle 2d fields only, use appropriate filter options like -var, -pl etc. Use `stc help` for details on available options.
+Handle 2d fields only, use appropriate [filter options](https://github.com/MetOffice/stc/blob/main/doc/stc.md#filter-options) like `-var`, `-pl` etc. Use `stc help` for details on available options.
 
 [stc](https://github.com/MetOffice/stc/blob/main/doc/stc.md) - SciTools Commands. Use "stc help" to list available commands
