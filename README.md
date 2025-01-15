@@ -1,7 +1,7 @@
 # STC - SciTools Commands
 
- Command line tools build on top of the SciTools libraries to work with
- scientific data related to the UM.
+ Command line tools build on top of the [SciTools](https://scitools.org.uk/) libraries to work with
+ scientific data related to the [Unified Model](https://www.metoffice.gov.uk/research/approach/modelling-systems/unified-model/index).
 
  ## Installation
 
@@ -20,4 +20,6 @@ in your ~/.bashrc file.
 
 ## Documentation
 
-Use "stc help" to learn how to use the tool.
+Type `stc help` to learn how to use the tool or read the [online documentation](https://github.com/MetOffice/stc/wiki/STC-%E2%80%90-SciTools-Commands#documentation).
+
+Enjoy
