@@ -20,6 +20,6 @@ in your ~/.bashrc file.
 
 ## Documentation
 
-Type `stc help` to learn how to use the tool or read the [online documentation](https://github.com/MetOffice/stc/wiki/stc).
+Type `stc help` to learn how to use the tool or read the [online documentation](https://github.com/MetOffice/stc/blob/main/doc/stc.md).
 
 Enjoy
