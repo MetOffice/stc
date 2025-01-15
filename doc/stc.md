@@ -1,12 +1,13 @@
 
- stc - SciTools Commands
+ # stc - SciTools Commands
 
  Collection of command line utilities build on top of the SciTools
  library, http://scitools.org.uk, to work with FF, PP, NetCDF and GRIB
  files from the UNIX command line.
 
-  AVAILABLE SUBCOMMANDS
+ ## AVAILABLE SUBCOMMANDS
 
+```
    add                  Add fields from two files
    cp (convert, copy)   Copy, extract, combine and convert data
    div                  Divide fields from two files
@@ -17,11 +18,12 @@
    regrid               Regrid fields from file
    split_precip         Split accumulated precipitation in time intervals
    sub                  Subtract fields from two files
-
    stc help SUBCOMMAND  Print detailed help
+```
 
-  FILTER OPTIONS
+##  FILTER OPTIONS
 
+```
    stc [...]
     -fcp   FCP_MIN FCP_MAX            Filter by forecast period
     -lat   LAT_MIN LAT_MAX            Filter by latitude
@@ -34,14 +36,16 @@
     -stash m??s??i???,[m??s??i???]    Filter by STASH code
     -um_version x.y                   Filter by UM version x.y
     -var   VAR_NAME[,VAR_NAME2,...]   Filter by variable name
+```
 
    The above options are available for all subcommands to filter the input
    data at the begin of the operation requested by the command.
 
-  OTHER OPTIONS
+ ## OTHER OPTIONS
 
+```
    stc [...]
     -nc_format NETCDF3_CLASSIC|NETCDF3_64BIT|NETCDF4_CLASSIC|NETCDF4(default)
     -nc_zlib   Turn on gzip compression while saving NetCDF
     --version  Print version information (based on svn info, st and diff)
-
+```
