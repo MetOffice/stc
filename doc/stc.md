@@ -52,4 +52,4 @@ The above options are available for all subcommands to filter the input data at 
     --version  Print version information (based on svn info, st and diff)
 ```
 
-See also 
+See also [stc cp](https://github.com/MetOffice/stc/blob/main/doc/stc_cp.md)
