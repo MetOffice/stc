@@ -1,12 +1,17 @@
+## stc - SciTools Commands
 
- # stc - SciTools Commands
+Command line utilities build on top of the [SciTools](http://scitools.org.uk) libraries to work with FF, PP, NetCDF and GRIB files.
 
- Collection of command line utilities build on top of the SciTools
- library, http://scitools.org.uk, to work with FF, PP, NetCDF and GRIB
- files from the UNIX command line.
+## Basic syntax
 
- ## AVAILABLE SUBCOMMANDS
+```
+stc COMMAND IFILE1[,IFILE2,...] [OFILE1[,OFILE2,...]] [-OPTION1 ARG1] [-OPTION2 ARG2]
+```
 
+Use `stc help` to and `stc help COMMAND` learn how to use `stc`.
+
+
+### subcommands
 ```
    add                  Add fields from two files
    cp (convert, copy)   Copy, extract, combine and convert data
@@ -21,7 +26,7 @@
    stc help SUBCOMMAND  Print detailed help
 ```
 
-##  FILTER OPTIONS
+### filter options
 
 ```
    stc [...]
@@ -37,15 +42,14 @@
     -um_version x.y                   Filter by UM version x.y
     -var   VAR_NAME[,VAR_NAME2,...]   Filter by variable name
 ```
+The above options are available for all subcommands to filter the input data at the begin of the operation requested by the command.
 
-   The above options are available for all subcommands to filter the input
-   data at the begin of the operation requested by the command.
-
- ## OTHER OPTIONS
-
+### other options
 ```
    stc [...]
     -nc_format NETCDF3_CLASSIC|NETCDF3_64BIT|NETCDF4_CLASSIC|NETCDF4(default)
     -nc_zlib   Turn on gzip compression while saving NetCDF
     --version  Print version information (based on svn info, st and diff)
 ```
+
+See also 
