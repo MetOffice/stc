@@ -1,0 +1,363 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+ stc - SciTools Commands
+
+ Collection of command line utilities build on top of the SciTools
+ library, http://scitools.org.uk, to work with FF, PP, NetCDF and GRIB
+ files from the UNIX command line.
+
+  AVAILABLE SUBCOMMANDS
+
+   add                  Add fields from two files
+   cp (convert, copy)   Copy, extract, combine and convert data
+   div                  Divide fields from two files
+   help                 Print help
+   ls (info)            List information from file
+   plot                 Plot 2d data slices
+   rdiff                Calculate relative difference between to files
+   regrid               Regrid fields from file
+   split_precip         Split accumulated precipitation in time intervals
+   sub                  Subtract fields from two files
+
+   stc help SUBCOMMAND  Print detailed help
+
+  FILTER OPTIONS
+
+   stc [...]
+    -fcp   FCP_MIN FCP_MAX            Filter by forecast period
+    -lat   LAT_MIN LAT_MAX            Filter by latitude
+    -lh    L_HEIGTH_MIN L_HEIGTH_MAX  Filter by level heigth
+    -lon   LON_MIN LON_MAX            Filter by longitude
+    -ml    ML_MIN  ML_MAX             Filter by model level
+    -pl    P_MIN   P_MAX              Filter by pressure level limits
+    -plev  P_LEV1[,P_LEV2,...]        Filter by pressure level list
+    -sl    SL_MIN  SL_MAX             Filter by soil level
+    -stash m??s??i???,[m??s??i???]    Filter by STASH code
+    -um_version x.y                   Filter by UM version x.y
+    -var   VAR_NAME[,VAR_NAME2,...]   Filter by variable name
+
+   The above options are available for all subcommands to filter the input
+   data at the begin of the operation requested by the command.
+
+  OTHER OPTIONS
+
+   stc [...]
+    -eqatt     Equalise attributes to concatenate cubes if possible
+    -nc_format NETCDF3_CLASSIC|NETCDF3_64BIT|NETCDF4_CLASSIC|NETCDF4(default)
+    -nc_zlib   Turn on gzip compression while saving NetCDF
+    --version  Print version information (based on svn info, st and diff)
+"""
+
+import sys
+import iris
+
+
+def main(a):
+
+    sys.path.append(sys.path[0] + '/src')
+    
+    from src import stc_add
+    from src import stc_div
+    from src import stc_cp
+    from src import stc_ls
+    from src import stc_plot
+    from src import stc_rdiff
+    from src import stc_regrid
+    from src import stc_split_precip
+    from src import stc_sub
+    from src import stc_test
+
+    
+    if a.command in ['h', 'help']:
+        if a.help in ['h', 'help', '']:
+            print("__doc__")
+            if a.v:
+                print(TimeFilter.__doc__)
+            if a.version:
+                print_version()
+        elif a.help in ['add']:
+            print(stc_add.__doc__)
+        elif a.help in ['cp', 'convert', 'copy']:
+            print(stc_cp.__doc__)
+        elif a.help in ['div']:
+            print(stc_div.__doc__)
+        elif a.help in ['info', 'ls']:
+            print(stc_ls.__doc__)
+        elif a.help in ['plot']:
+            print(stc_plot.__doc__)
+        elif a.help in ['rdiff']:
+            print(stc_rdiff.__doc__)            
+        elif a.help in ['regrid']:
+            print(stc_regrid.__doc__)
+        elif a.help in ['sub']:
+            print(stc_sub.__doc__)
+        elif a.help in ['split_precip']:
+            print(stc_split_precip.__doc__)
+        else:
+            print("Command or help not available")
+        sys.exit()
+
+    att_lim = AttributeFilter(stash=a.stash, um_version=a.um_version)
+    time_sel = TimeFilter(YYYY=a.YYYY, MM=a.MM, DD=a.DD, hh=a.hh, mm=a.mm)
+    lim = CoordLim(fcp=a.fcp, lat=a.lat, lh=a.lh, lon=a.lon, ml=a.ml, pl=a.pl,
+                   sl=a.sl)
+
+    if a.command in ['add']:
+        stc_add(a.ifile, a.ofile, var=a.var, att_lim=att_lim, verbose=a.v,
+                index=a.ind, show_coord=a.coord, lim=lim, p_lev=a.plev,
+                time_sel=time_sel, nc_kwargs=a.nc_kwargs)
+    elif a.command in ['cp', 'convert', 'copy']:
+        stc_cp(a.ifile, a.ofile, var=a.var, att_lim=att_lim, index=a.ind,
+               lim=lim, p_lev=a.plev, time_sel=time_sel, nc_kwargs=a.nc_kwargs, eqatt=a.eqatt)
+    elif a.command in ['div']:
+        stc_div(a.ifile, a.ofile, var=a.var,att_lim=att_lim, verbose=a.v,
+                index=a.ind, show_coord=a.coord, lim=lim, p_lev=a.plev,
+                time_sel=time_sel, nc_kwargs=a.nc_kwargs)
+    elif a.command in ['info', 'ls']:
+        stc_ls(a.ifile, var=a.var, att_lim=att_lim, verbose=a.v, index=a.ind,
+               show_coord=a.coord, lim=lim, p_lev=a.plev, time_sel=time_sel, eqatt=a.eqatt)
+    elif a.command in ['regrid']:
+        stc_regrid(a.ifile, a.ofile,
+                   target_grid=a.tgrid, target_lat=a.tlat, target_lon=a.tlon,
+                   var=a.var, att_lim=att_lim,index=a.ind, lim=a.lim,
+                   p_lev=a.plev, time_sel=time_sel, nc_kwargs=a.nc_kwargs)
+    elif a.command in ['rdiff']:
+        stc_rdiff(a.ifile, a.ofile, var=a.var, att_lim=att_lim, verbose=a.v,
+                  index=a.ind,
+                  show_coord=a.coord, lim=lim, p_lev=a.plev, time_sel=time_sel,
+                  nc_kwargs=a.nc_kwargs)
+    elif a.command in ['split_precip']:
+        stc_split_precip(a.ifile, a.ofile, var=a.var, att_lim=att_lim,
+                         verbose=a.v, index=a.ind, lim=lim, time_sel=time_sel,
+                         p_lev=a.plev, nc_kwargs=a.nc_kwargs)
+    elif a.command in ['sub']:
+        stc_sub(a.ifile, a.ofile, var=a.var, att_lim=att_lim, verbose=a.v,
+                index=a.ind, show_coord=a.coord, lim=lim, p_lev=a.plev,
+                time_sel=time_sel, nc_kwargs=a.nc_kwargs)
+    elif a.command in ['test', 'prototype']:
+        stc_test(a.ifile, var=a.var, att_lim=att_lim, verbose=a.v, index=a.ind,
+                 show_coord=a.coord, lim=lim, p_lev=a.plev, time_sel=time_sel,
+                 nc_kwargs=a.nc_kwargs)
+    elif a.command == 'plot':
+        stc_plot(a.ifile, a.ofile, var=a.var, att_lim=att_lim, index=a.ind,
+                 lim=lim, p_lev=a.plev, ncol=a.ncol, clim=a.clim,
+                 cmap=a.cmap, title=a.title, maskfile=a.mask,
+                 time_sel=time_sel)
+    else:
+        raise Exception('unknown operator')
+
+    
+
+class TimeFilter:
+
+    """  EXPERIMENTAL OPTION: Filter included dates and times.
+
+    stc [...] -YYYY YEAR1[,YEAR2,...]
+    stc [...] -MM   MONTH1[,MONTH2,...]
+    stc [...] -DD   DAY1[,DAY2,...]
+    stc [...] -hh   HOUR1[HOUR2,...]
+    stc [...] -mm   MINUTE1[MINUTE1,...]
+
+    This functionality is still a bit rough. More testing is required.
+    The calling may change in the future.
+    """
+    def __init__(self, YYYY=[None], MM=[None], DD=[None], hh=[None], mm=[None],
+                 ss=[None], sss=[None]):
+        self.YYYY = YYYY
+        self.MM = MM
+        self.DD = DD
+        self.hh = hh
+        self.mm = mm
+        self.ss = ss
+        self.sss = sss
+
+
+class AttributeFilter:
+
+    """Class to hold attribute filter"""
+    def __init__(self, stash=[None], um_version=[None]):
+        self.stash = stash
+        self.um_version = um_version
+
+
+class CoordLim:
+
+    """Class to hold limits for cooordinate filter"""
+    def __init__(self, fcp=[None, None], lat=[None, None], lh=[None, None],
+                 lon=[None, None], ml=[None, None], pl=[None, None],
+                 sl=[None, None]):
+        self.fcp = fcp
+        self.lat = lat
+        self.lh  = lh
+        self.lon = lon
+        self.ml  = ml
+        self.pl  = pl
+        self.sl  = sl
+
+
+def print_version():
+    dname = os.path.dirname(os.path.realpath(__file__))
+    print(" ")
+    print("svn info:")
+    print(" ")
+    os.system("svn info " + dname)
+    print("svn st:")
+    os.system("svn st " + dname)
+    print(" ")
+    print("svn diff:")
+    os.system("svn diff " + dname)
+    print(" ")
+
+if __name__ == '__main__':
+
+    import argparse
+    import glob
+    import os.path
+
+    from argparse import RawTextHelpFormatter
+    from argparse import RawDescriptionHelpFormatter
+
+    if len(sys.argv) == 1:
+        print(__doc__)
+    else:
+        parser = argparse.ArgumentParser(description=__doc__, formatter_class=
+                                         RawDescriptionHelpFormatter)
+
+        parser.add_argument('command', type=str)
+
+        parser.add_argument('ifile', nargs='?', default='')
+
+        parser.add_argument('ofile', nargs='?', default='')
+
+        parser.add_argument('-clim', type=int, nargs=2, default=[None, None])
+
+        parser.add_argument('-cmap', type=str, default='auto')
+
+        parser.add_argument('-coord', type=str, nargs='+', default='none')
+
+        parser.add_argument('-DD', type=str, default=[None],
+                            help='list of used days')
+
+        parser.add_argument('-eqatt', action='store_true', default=False)
+        
+        parser.add_argument('-fcp', type=int, nargs=2,
+                            default=[None, None], help='limit forecast period')
+
+        parser.add_argument('-hh', type=str, default=[None],
+                            help='list of used hours')
+
+        parser.add_argument('-ind', type=int, default=None)
+
+        parser.add_argument('-lat', type=int, nargs=2, default=[None, None],
+                            help='limit grid latitude')
+
+        parser.add_argument('-lh', type=float, nargs=2, default=[None, None],
+                            help='limit model level')
+
+        parser.add_argument('-lon', type=int, nargs=2, default=[None, None],
+                            help='limit grid longitude')
+
+        parser.add_argument('-mm', type=str, default=[None],
+                            help='list of used minutes')
+
+        parser.add_argument('-MM', type=str, default=[None],
+                            help='list of used months')
+
+        parser.add_argument('-mask', type=str, nargs=1, default=None)
+
+        parser.add_argument('-ml', type=int, nargs=2, default=[None, None],
+                            help='limit model level')
+
+        parser.add_argument('-ncol', type=int, default=25)
+
+        parser.add_argument('-nc_format', type=str, default=None,
+                            help='Set netcdf_format')
+
+        parser.add_argument('-nc_zlib', action='store_true', default=False,
+                            help='Compressed netCDF file using gzip') 
+
+        parser.add_argument('-pl', type=int, nargs=2, default=[None, None],
+                            help='limit pressure level')
+
+        parser.add_argument('-plev', type=str, default=None,
+                            help='list of pressure levels')
+
+        parser.add_argument('-sl', type=int, nargs=2, default=[None, None],
+                            help='limit soil model level number')
+
+        parser.add_argument('-stash', type=str, default=None)
+
+        parser.add_argument('-tgrid', type=str, nargs=1, default='n2004')
+
+        parser.add_argument('-tlat', type=int, nargs=2, default=[None, None],
+                            help='limit grid latitude')
+
+        parser.add_argument('-tlon', type=int, nargs=2, default=[None, None],
+                            help='limit grid longitute')
+
+        parser.add_argument('-title', type=str, nargs=1, default=None)
+
+        parser.add_argument('-um_version', type=str, nargs=1, default=None)
+
+        parser.add_argument('-v', action='store_true', default=False)
+
+        parser.add_argument('-version', '--version', action='store_true',
+                            default=False)
+
+        parser.add_argument('-var', type=str, default='all')
+
+        parser.add_argument('-YYYY', type=str, default=[None],
+                            help='list of used years')
+
+        a = parser.parse_args()
+
+        a.ofile = a.ofile.split(',')
+
+        # expand ifile argument: ifle1,'ifile*' => ifile1 ifile2 ifile3
+        a.ifile = a.ifile.split(',')
+        tmp_ifiles = []
+        for my_file in a.ifile:
+            tmp_ifiles += glob.glob(my_file)
+        a.ifile = sorted(set(tmp_ifiles), key=tmp_ifiles.index)
+        if len(a.ifile) == 0:
+            a.ifile = my_file
+
+        a.nc_kwargs = {}
+        if a.nc_format:
+            a.nc_kwargs = {'netcdf_format': a.nc_format}   
+        if a.nc_zlib:
+            a.nc_kwargs.update({'zlib': True})
+
+        if a.YYYY != [None]:
+            a.YYYY = a.YYYY.split(',')
+
+        if a.MM != [None]:
+            a.MM = a.MM.split(',')
+
+        if a.DD != [None]:
+            a.DD = a.DD.split(',')
+
+        if a.hh != [None]:
+            a.hh = a.hh.split(',')
+
+        if a.mm != [None]:
+            a.mm = a.mm.split(',')
+
+        a.var = a.var.split(',')
+
+        if a.command in ["h", "help"]:
+            # clearer name for requested help
+            a.help = a.ifile
+            if len(sys.argv) == 2:
+                print(__doc__)
+                if a.v:
+                    print(TimeFilter.__doc__)
+                sys.exit()
+        else:
+             if a.version:
+                 print_version()
+
+        a.argv = sys.argv
+
+        main(a=a)
