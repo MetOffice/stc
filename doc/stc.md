@@ -52,4 +52,4 @@ The above options are available for all subcommands to filter the input data at 
     --version  Print version information (based on svn info, st and diff)
 ```
 
-See also [stc cp](https://github.com/MetOffice/stc/blob/main/doc/stc_cp.md)
+See also [stc cp](https://github.com/MetOffice/stc/blob/main/doc/stc_cp.md) [stc div](https://github.com/MetOffice/stc/blob/main/doc/stc_div.md), [stc ls](https://github.com/MetOffice/stc/blob/main/doc/stc_ls.md), [stc plot](https://github.com/MetOffice/stc/blob/main/doc/stc_plot.md), [stc rdiff](https://github.com/MetOffice/stc/blob/main/doc/stc_rdiff.md), [stc regrid](https://github.com/MetOffice/stc/blob/main/doc/stc_regrid.md), [stc split_precip](https://github.com/MetOffice/stc/blob/main/doc/stc_split_precip.md), [stc sub](https://github.com/MetOffice/stc/blob/main/doc/stc_sub.md)
