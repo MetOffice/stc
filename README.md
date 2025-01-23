@@ -1,9 +1,9 @@
 # STC - SciTools Commands
 
  Command line tools build on top of the [SciTools](https://scitools.org.uk/) libraries to work with
- scientific data related to the [Unified Model](https://www.metoffice.gov.uk/research/approach/modelling-systems/unified-model/index).
+ scientific data related to the [Unified Model](https://www.metoffice.gov.uk/research/approach/modelling-systems/unified-model/index). STC is a small utility project, provided as it is without further development or support plans.
 
- ## Installation
+## Installation
 
 ```
 mkdir  ~/opt
