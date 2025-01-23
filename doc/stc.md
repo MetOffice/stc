@@ -1,6 +1,6 @@
 ## stc - SciTools Commands
 
-Command line utilities build on top of the [SciTools](http://scitools.org.uk) libraries to work with FF, PP, NetCDF and GRIB files.
+Command line utilities build on top of the [SciTools](http://scitools.org.uk) libraries to work with FF, PP, NetCDF and GRIB files. To try the tool you can download example data from [iris-sample-data](https://github.com/SciTools/iris-sample-data).
 
 ## Basic syntax
 
