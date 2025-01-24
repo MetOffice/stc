@@ -1,6 +1,6 @@
 ## stc - SciTools Commands
 
-[STC](https://github.com/MetOffice/stc) allows file simple file manipulation and listing with the following syntax:
+**[stc](https://github.com/MetOffice/stc)** allows file simple file manipulation and listing with the following syntax:
 
 ```
 stc COMMAND IFILE1[,IFILE2,...] [OFILE1[,OFILE2,...]] [-OPTION1 ARG1] [-OPTION2 ARG2]
