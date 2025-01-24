@@ -13,7 +13,7 @@ import iris
 def stc_ls(ifile, var='all', att_lim=None, verbose=False, index=None,
            show_coord='none', lim=None, p_lev=None, time_sel=None, eqatt=None):
     """
-   stc ls (info): List information about file content.
+    stc ls (info): List information about file content.
 
     Usage:
 
@@ -32,11 +32,11 @@ def stc_ls(ifile, var='all', att_lim=None, verbose=False, index=None,
     """
 
     from stc_filter import stc_coordinate_filter
-    from stc_load   import stc_load
+    from stc_load import stc_load
 
     c = stc_load(ifile, var=var, att_lim=att_lim, index=index, lim=lim,
-                     p_lev=p_lev, time_sel=time_sel, eqatt=eqatt)
-    
+                 p_lev=p_lev, time_sel=time_sel, eqatt=eqatt)
+
     if is_iter(c):
         k = 0
         for my_cube in c:
