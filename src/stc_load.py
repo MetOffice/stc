@@ -3,8 +3,9 @@
 
 # (C) Crown Copyright, Met Office. All rights reserved.
 #
-# This file is part of SciTools Commands and is released under the BSD 3-Clause license.
-# See LICENSE in the root of the repository for full licensing details.
+# This file is part of SciTools Commands and is released under the
+# BSD 3-Clause license. See LICENSE in the root of the repository for
+# full licensing details.
 
 import sys
 import iris
@@ -35,7 +36,7 @@ def stc_load(ifile, var='all', att_lim=None, index=None, lim=None,
     except:
         c = iris.load(ifile, cs)
 
-    if index != None:
+    if index is not None:
         c = c[index]
 
     if eqatt:
@@ -47,7 +48,7 @@ def stc_load(ifile, var='all', att_lim=None, index=None, lim=None,
             except:
                 print("STC WARNING: equalising did not work")
                 pass
-        
+
     return c
 
 
