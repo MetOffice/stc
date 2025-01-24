@@ -1,10 +1,9 @@
+## [stc](https://github.com/MetOffice/stc/blob/main/doc/stc.md) split_precip
 
-**stc split_precip**: Split accumulated precipitation in time intervals
+**stc split_precip** splits accumulated precipitation in time intervals.
 
-Usage:
+### Usage:
 
 ```
 stc split_precip IFILE,IFILE2[,...,IFILEN] OFILE
 ```
-
-[stc](https://github.com/MetOffice/stc/blob/main/doc/stc.md) - SciTools Commands. Use "stc help" to list available commands.
