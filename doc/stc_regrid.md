@@ -1,4 +1,6 @@
-## [stc](https://github.com/MetOffice/stc/blob/main/doc/stc.md) regrid - regrid to data to a target grid (default lon lat)
+## [stc](https://github.com/MetOffice/stc/blob/main/doc/stc.md) regrid
+
+**stc regrid** regrids data to a target grid which is by default a lon lat if no other grid is provided.
 
 ### Use
 
