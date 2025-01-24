@@ -22,7 +22,7 @@ stc cp file1,file2  file12.nc
 Using your [example-data](https://github.com/MetOffice/stc/blob/main/doc/stc.md#example-data) you can concat two pp files and write the output to NetCDF
 
 ```
-stc cp UM/northward_sea_ice_velocity.1890.01.01.00.00.pp,UM/northward_sea_ice_velocity.1890.02.01.00.00.pp vice_1890-01--02.nc
+stc cp northward_sea_ice_velocity.1890.01.01.00.00.pp,northward_sea_ice_velocity.1890.02.01.00.00.pp vice_1890-01--02.nc
 ```
 
 Select one variable from a pp file by name 'x_wind` and save the selected variable in grib2 format
