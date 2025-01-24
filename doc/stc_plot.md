@@ -1,4 +1,6 @@
-## [stc](https://github.com/MetOffice/stc/blob/main/doc/stc.md) plot - plot 2d data slices
+## [stc](https://github.com/MetOffice/stc/blob/main/doc/stc.md) plot
+
+**stc plot** plots 2d data slices. 
 
 ### Use
 
