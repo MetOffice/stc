@@ -1,4 +1,6 @@
-**stc regrid**: Regrid to data to a target grid (default lon lat)
+## [stc](https://github.com/MetOffice/stc/blob/main/doc/stc.md) regrid - regrid to data to a target grid (default lon lat)
+
+### Use
 
 ```
 stc regrid IFILE OFILE
@@ -12,6 +14,3 @@ stc regrid [...] -tlon  LON_MIN LON_MAX
 stc regrid [...] -tlat  LAT_MIN LAT_MAX
                         latitude limits for target grid
 ```
-
-[stc](https://github.com/MetOffice/stc/blob/main/doc/stc.md) - SciTools Commands. Use `stc help` to list available commands
-    
