@@ -32,7 +32,7 @@ def stc_cp(ifile, ofile, var='all', att_lim=None, index=None, lim=None,
     """
 
     from stc_filter import stc_coordinate_filter
-    from stc_load   import stc_load
+    from stc_load import stc_load
 
     print(" " + str(ifile) + "  => " + str(ofile))
 
@@ -42,9 +42,8 @@ def stc_cp(ifile, ofile, var='all', att_lim=None, index=None, lim=None,
         try:
             iris.save(c, ofile[0], **nc_kwargs)
         except Exception as e:
-             raise Exception(e)
-        
-            
+            raise Exception(e)
+
     elif len(ofile) == len(ifile):
         for k in range(len(ifile)):
             c = stc_load(ifile[k], var=var, att_lim=att_lim, index=index,
