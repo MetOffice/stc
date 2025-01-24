@@ -55,4 +55,4 @@ Filter options allow to operated on subsets of the input data. The availble filt
 
 ### Example data
 
-To learn the use of stc you can download example data from [iris-sample-data](https://github.com/SciTools/iris-sample-data) and experiment with the provided commands.
+To learn how to use stc you can download example data from [iris-sample-data](https://github.com/SciTools/iris-sample-data) with `git clone https://github.com/SciTools/iris-sample-data.git` and experiment with the examples given in the documentation for the individual commands.
