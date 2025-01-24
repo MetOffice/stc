@@ -1,6 +1,6 @@
-**stc plot**: Plot 2d data slices.
+## stc plot - plot 2d data slices
 
-Usage:
+### Use
 
 ```
 stc plot IFILE
@@ -17,5 +17,3 @@ stc plot IFILE [...] -mask YOUR_PATH/qrparm.mask
 ```
 
 Handle 2d fields only, use appropriate [filter options](https://github.com/MetOffice/stc/blob/main/doc/stc.md#filter-options) like `-var`, `-pl` etc. Use `stc help` for details on available options.
-
-[stc](https://github.com/MetOffice/stc/blob/main/doc/stc.md) - SciTools Commands. Use "stc help" to list available commands
