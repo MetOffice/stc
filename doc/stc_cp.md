@@ -25,13 +25,13 @@ Using your [example-data](https://github.com/MetOffice/stc/blob/main/doc/stc.md#
 stc cp northward_sea_ice_velocity.1890.01.01.00.00.pp,northward_sea_ice_velocity.1890.02.01.00.00.pp vice_1890-01--02.nc
 ```
 
-Select one variable from a pp file by name 'x_wind` and save the selected variable in grib2 format
+Use [filter options](https://github.com/MetOffice/stc/blob/main/doc/stc.md#filter-options) to select one variable from a pp file by name 'x_wind` and save the selected variable in GRIB2 format
 
 ```
 stc cp wind_speed_lake_victoria.pp u.grib2 -var x_wind
 ```
 
-Select a varaible by its UM STASH code (`m01s00i033`) and store the field in NetCDF format  
+or to select a varaible by its UM STASH code (`m01s00i033`) and store the field in NetCDF format  
 
 ```
 stc cp uk_hires.pp surface_altitude.nc -stash m01s00i033
