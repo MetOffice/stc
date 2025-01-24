@@ -2,7 +2,7 @@
 
 **stc rdiff** calculatse relative difference between fields in two files, i.e. ( IFILE1 - IFILE2 ) / IFILE1.
 
-### Use:
+### Use
 ```
 stc rdiff IFILE1,IFILE2 OFILE
 ```
