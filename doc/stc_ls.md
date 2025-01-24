@@ -1,4 +1,4 @@
-**[stc](https://github.com/MetOffice/stc/blob/main/doc/stc.md) ls**: List information about file content.
+## [stc](https://github.com/MetOffice/stc/blob/main/doc/stc.md) ls - list file content.
 
 ### Use
 ```
