@@ -30,3 +30,9 @@ Select one variable from a pp file by name 'x_wind` and save the selected variab
 ```
 stc cp wind_speed_lake_victoria.pp u.grib2 -var x_wind
 ```
+
+Select a varaible by its UM STASH code (`m01s00i033`) and store the field in NetCDF format  
+
+```
+stc cp uk_hires.pp surface_altitude.nc -stash m01s00i033
+```
