@@ -1,23 +1,21 @@
 ## stc - SciTools Commands
 
-Command line utilities build on top of the [SciTools](http://scitools.org.uk) libraries like [Iris](https://scitools-iris.readthedocs.io/en/stable/index.html) to work with FF, PP, NetCDF and GRIB files. To try stc you can download example data from [iris-sample-data](https://github.com/SciTools/iris-sample-data) and experiment with the provided commands.
-
-## Basic syntax
+[STC](https://github.com/MetOffice/stc) allows file simple file manipulation and listing with the following syntax:
 
 ```
 stc COMMAND IFILE1[,IFILE2,...] [OFILE1[,OFILE2,...]] [-OPTION1 ARG1] [-OPTION2 ARG2]
 ```
 
-Use `stc help` to and `stc help COMMAND` learn how to use `stc`.
+### Subcommands
 
+The follwing commands are avalble:
 
-### subcommands
 ```
    add                  Add fields from two files
-   cp (convert, copy)   Copy, extract, combine and convert data
+   cp                   Copy, extract, combine and convert data
    div                  Divide fields from two files
    help                 Print help
-   ls (info)            List information from file
+   ls                   List information from file
    plot                 Plot 2d data slices
    rdiff                Calculate relative difference between to files
    regrid               Regrid fields from file
@@ -26,7 +24,11 @@ Use `stc help` to and `stc help COMMAND` learn how to use `stc`.
    stc help SUBCOMMAND  Print detailed help
 ```
 
-### filter options
+See [cp](https://github.com/MetOffice/stc/blob/main/doc/stc_cp.md), [div](https://github.com/MetOffice/stc/blob/main/doc/stc_div.md), [ls](https://github.com/MetOffice/stc/blob/main/doc/stc_ls.md), [plot](https://github.com/MetOffice/stc/blob/main/doc/stc_plot.md), [rdiff](https://github.com/MetOffice/stc/blob/main/doc/stc_rdiff.md), [regrid](https://github.com/MetOffice/stc/blob/main/doc/stc_regrid.md), [split_precip](https://github.com/MetOffice/stc/blob/main/doc/stc_split_precip.md), and [sub](https://github.com/MetOffice/stc/blob/main/doc/stc_sub.md) for details. 
+
+### Filter options
+
+Filter options allow to operated on subsets of the input data. The availble filter options are:
 
 ```
    stc [...]
@@ -42,9 +44,8 @@ Use `stc help` to and `stc help COMMAND` learn how to use `stc`.
     -um_version x.y                   Filter by UM version x.y
     -var   VAR_NAME[,VAR_NAME2,...]   Filter by variable name
 ```
-The above options are available for all subcommands to filter the input data at the begin of the operation requested by the command.
 
-### other options
+### Other options
 ```
    stc [...]
     -nc_format NETCDF3_CLASSIC|NETCDF3_64BIT|NETCDF4_CLASSIC|NETCDF4(default)
@@ -52,4 +53,6 @@ The above options are available for all subcommands to filter the input data at 
     --version  Print version information (based on svn info, st and diff)
 ```
 
-See also [stc cp](https://github.com/MetOffice/stc/blob/main/doc/stc_cp.md) [stc div](https://github.com/MetOffice/stc/blob/main/doc/stc_div.md), [stc ls](https://github.com/MetOffice/stc/blob/main/doc/stc_ls.md), [stc plot](https://github.com/MetOffice/stc/blob/main/doc/stc_plot.md), [stc rdiff](https://github.com/MetOffice/stc/blob/main/doc/stc_rdiff.md), [stc regrid](https://github.com/MetOffice/stc/blob/main/doc/stc_regrid.md), [stc split_precip](https://github.com/MetOffice/stc/blob/main/doc/stc_split_precip.md), [stc sub](https://github.com/MetOffice/stc/blob/main/doc/stc_sub.md)
+### Example data
+
+To learn the use of stc you can download example data from [iris-sample-data](https://github.com/SciTools/iris-sample-data) and experiment with the provided commands.
