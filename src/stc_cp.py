@@ -8,7 +8,6 @@
 
 import sys
 import iris
-#import gribapi
 
 
 def stc_cp(ifile, ofile, var='all', att_lim=None, index=None, lim=None,
@@ -42,12 +41,6 @@ def stc_cp(ifile, ofile, var='all', att_lim=None, index=None, lim=None,
                      p_lev=p_lev, time_sel=time_sel, eqatt=eqatt)
         try:
             iris.save(c, ofile[0], **nc_kwargs)
- #       except gribapi.GribInternalError:
-            # remove wrong time bounds, i.e. from cubes created from
-            # archived precipitation_amount (STASH m01s05i226).
-  #          print "STC WARNING: Bounds of time coord removed to save with GRIB_API"
-   #         c.coord('time').bounds = None
-    #        iris.save(c, ofile[0], **nc_kwargs)
         except Exception as e:
              raise Exception(e)
         
