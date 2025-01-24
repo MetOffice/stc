@@ -1,4 +1,6 @@
-## [stc](https://github.com/MetOffice/stc/blob/main/doc/stc.md) cp - copy, extract, combine and convert data
+## [stc](https://github.com/MetOffice/stc/blob/main/doc/stc.md) cp 
+
+**stc cp** copies, extracts, combines and converts data.
 
 ### Use
 
