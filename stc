@@ -3,8 +3,9 @@
 #
 # (C) Crown Copyright, Met Office. All rights reserved.
 #
-# This file is part of SciTools Commands and is released under the BSD 3-Clause license.
-# See LICENSE in the root of the repository for full licensing details.
+# This file is part of SciTools Commands and is released under the
+# BSD 3-Clause license. See LICENSE in the root of the repository for
+# full licensing details.
 
 """
  stc - SciTools Commands
@@ -62,7 +63,7 @@ import iris
 def main(a):
 
     sys.path.append(sys.path[0] + '/src')
-    
+
     from src import stc_add
     from src import stc_div
     from src import stc_cp
@@ -74,7 +75,6 @@ def main(a):
     from src import stc_sub
     from src import stc_test
 
-    
     if a.command in ['h', 'help']:
         if a.help in ['h', 'help', '']:
             print("__doc__")
@@ -93,7 +93,7 @@ def main(a):
         elif a.help in ['plot']:
             print(stc_plot.__doc__)
         elif a.help in ['rdiff']:
-            print(stc_rdiff.__doc__)            
+            print(stc_rdiff.__doc__)
         elif a.help in ['regrid']:
             print(stc_regrid.__doc__)
         elif a.help in ['sub']:
@@ -115,18 +115,20 @@ def main(a):
                 time_sel=time_sel, nc_kwargs=a.nc_kwargs)
     elif a.command in ['cp', 'convert', 'copy']:
         stc_cp(a.ifile, a.ofile, var=a.var, att_lim=att_lim, index=a.ind,
-               lim=lim, p_lev=a.plev, time_sel=time_sel, nc_kwargs=a.nc_kwargs, eqatt=a.eqatt)
+               lim=lim, p_lev=a.plev, time_sel=time_sel, nc_kwargs=a.nc_kwargs,
+               eqatt=a.eqatt)
     elif a.command in ['div']:
-        stc_div(a.ifile, a.ofile, var=a.var,att_lim=att_lim, verbose=a.v,
+        stc_div(a.ifile, a.ofile, var=a.var, att_lim=att_lim, verbose=a.v,
                 index=a.ind, show_coord=a.coord, lim=lim, p_lev=a.plev,
                 time_sel=time_sel, nc_kwargs=a.nc_kwargs)
     elif a.command in ['info', 'ls']:
         stc_ls(a.ifile, var=a.var, att_lim=att_lim, verbose=a.v, index=a.ind,
-               show_coord=a.coord, lim=lim, p_lev=a.plev, time_sel=time_sel, eqatt=a.eqatt)
+               show_coord=a.coord, lim=lim, p_lev=a.plev, time_sel=time_sel,
+               eqatt=a.eqatt)
     elif a.command in ['regrid']:
         stc_regrid(a.ifile, a.ofile,
                    target_grid=a.tgrid, target_lat=a.tlat, target_lon=a.tlon,
-                   var=a.var, att_lim=att_lim,index=a.ind, lim=a.lim,
+                   var=a.var, att_lim=att_lim, index=a.ind, lim=a.lim,
                    p_lev=a.plev, time_sel=time_sel, nc_kwargs=a.nc_kwargs)
     elif a.command in ['rdiff']:
         stc_rdiff(a.ifile, a.ofile, var=a.var, att_lim=att_lim, verbose=a.v,
@@ -153,7 +155,6 @@ def main(a):
     else:
         raise Exception('unknown operator')
 
-    
 
 class TimeFilter:
 
@@ -195,11 +196,11 @@ class CoordLim:
                  sl=[None, None]):
         self.fcp = fcp
         self.lat = lat
-        self.lh  = lh
+        self.lh = lh
         self.lon = lon
-        self.ml  = ml
-        self.pl  = pl
-        self.sl  = sl
+        self.ml = ml
+        self.pl = pl
+        self.sl = sl
 
 
 def print_version():
@@ -214,6 +215,7 @@ def print_version():
     print("svn diff:")
     os.system("svn diff " + dname)
     print(" ")
+
 
 if __name__ == '__main__':
 
@@ -246,7 +248,7 @@ if __name__ == '__main__':
                             help='list of used days')
 
         parser.add_argument('-eqatt', action='store_true', default=False)
-        
+
         parser.add_argument('-fcp', type=int, nargs=2,
                             default=[None, None], help='limit forecast period')
 
@@ -281,7 +283,7 @@ if __name__ == '__main__':
                             help='Set netcdf_format')
 
         parser.add_argument('-nc_zlib', action='store_true', default=False,
-                            help='Compressed netCDF file using gzip') 
+                            help='Compressed netCDF file using gzip')
 
         parser.add_argument('-pl', type=int, nargs=2, default=[None, None],
                             help='limit pressure level')
@@ -331,7 +333,7 @@ if __name__ == '__main__':
 
         a.nc_kwargs = {}
         if a.nc_format:
-            a.nc_kwargs = {'netcdf_format': a.nc_format}   
+            a.nc_kwargs = {'netcdf_format': a.nc_format}
         if a.nc_zlib:
             a.nc_kwargs.update({'zlib': True})
 
@@ -361,8 +363,8 @@ if __name__ == '__main__':
                     print(TimeFilter.__doc__)
                 sys.exit()
         else:
-             if a.version:
-                 print_version()
+            if a.version:
+                print_version()
 
         a.argv = sys.argv
 
