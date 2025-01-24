@@ -1,4 +1,6 @@
-## [stc](https://github.com/MetOffice/stc/blob/main/doc/stc.md) ls - list file content
+## [stc](https://github.com/MetOffice/stc/blob/main/doc/stc.md) ls 
+
+**stc ls** listd file contents as [Iris cubes](https://scitools-iris.readthedocs.io/en/stable/userguide/iris_cubes.html#) or cube lists.
 
 ### Use
 ```
