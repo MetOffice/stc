@@ -10,7 +10,7 @@ stc cp IFILE,IFILE2 OFILE1,OFILE2
 stc cp IFILE,IFILE2 OFILE
 ```
 
-The format of OFILE is determined by the suffix (pp, nc or grib).
+The format of OFILE is determined by the suffix (pp, nc or grib2).
 
 ```
 stc cp fieldsfile   gribfile.grib
@@ -25,3 +25,8 @@ Using your [example-data](https://github.com/MetOffice/stc/blob/main/doc/stc.md#
 stc cp UM/northward_sea_ice_velocity.1890.01.01.00.00.pp,UM/northward_sea_ice_velocity.1890.02.01.00.00.pp vice_1890-01--02.nc
 ```
 
+Select one variable from a pp file by name 'x_wind` and save the selected variable in grib2 format
+
+```
+stc cp wind_speed_lake_victoria.pp u.grib2 -var x_wind
+```
