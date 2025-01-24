@@ -2,7 +2,7 @@
 
 **stc split_precip** splits accumulated precipitation in time intervals.
 
-### Usage:
+### Use
 
 ```
 stc split_precip IFILE,IFILE2[,...,IFILEN] OFILE
